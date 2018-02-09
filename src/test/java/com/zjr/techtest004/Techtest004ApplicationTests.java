@@ -1,13 +1,16 @@
 package com.zjr.techtest004;
 
+import com.zjr.techtest004.util.collection.ListUtil;
 import com.zjr.techtest004.util.time.DateUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -118,5 +121,47 @@ public class Techtest004ApplicationTests {
         //获取20号的开始时间，即0时0分0秒
         date = DateUtil.beginOfDate(date);
         System.out.println(date.toLocaleString());
+    }
+    @Test
+    public void test16(){
+
+        Date date = DateUtil.nextWeek(new Date());
+        System.out.println(date.toLocaleString());
+    }
+    /*   ================集合======================   */
+    @Test
+    public void test17(){
+        List list1 = new ArrayList<>();
+        list1.add("zhangsan");
+        list1.add("lisi");
+        list1.add(20);
+        List list2 = new ArrayList<>();
+        list2.add(4);
+        list2.add(new Date());
+        //集合的并集
+        List union = ListUtil.union(list1, list2);
+        union.forEach(i-> {
+            System.out.println(i);
+        });
+        System.out.println(union.size());
+
+    }
+    @Test
+    public void test18(){
+        List list1 = new ArrayList<>();
+        list1.add("zhangsan");
+        list1.add("lisi");
+        list1.add(20);
+        List list2 = new ArrayList<>();
+        list2.add(4);
+        list2.add(new Date());
+        list2.add("lisi");
+        //集合的交集
+        List intersection = ListUtil.intersection(list1,list2);
+        intersection.forEach(i-> {
+            System.out.println(i);
+        });
+        System.out.println(intersection.size());
+
     }
 }
